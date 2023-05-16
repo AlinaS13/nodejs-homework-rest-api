@@ -18,6 +18,10 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -48,8 +52,6 @@ const updateFavoriteContactSchema = Joi.object({
 contactSchema.post("save", hendleMongooseError);
 
 const Contact = model("contact", contactSchema);
-module.exports = Contact;
-
 const schemas = {
   contactAddSchema,
   updateFavoriteContactSchema,
